@@ -1,12 +1,11 @@
 library(tidyverse)
-library(tidyverse)
 library(here)
 
-NLS97 <- read_csv(here("Data/NLS97_raw.csv"))
+NLSY97 <- read_csv(here("Data/NLSY97_raw.csv"))
 
-head(NLS97)
+head(NLSY97)
 
-NLS97 <- NLS97 %>% 
+NLSY97 <- NLSY97 %>% 
   mutate(across(starts_with("E"), ~case_when(
   .x < 0 ~ NA_real_,
   .x == 99 ~ NA_real_,
@@ -25,4 +24,5 @@ NLS97 <- NLS97 %>%
   )) %>% 
   select(race, gender, total_arrests)
   
-write_csv(NLS97,"Data/NLS97_clean.csv")
+write_csv(NLSY97,"Data/NLSY97_clean.csv")
+
